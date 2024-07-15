@@ -1,0 +1,92 @@
+<main xmlns:th="http://www.thymeleaf.org" th:fragment="content" class="h-100">
+    <div class="container container-tight py-4">
+        <div class="text-center mb-4">
+            <a href="." class="navbar-brand navbar-brand-autodark">
+                <img th:src="@{/resources/img/logo.png}" width="110" height="32" alt="Tabler" class="navbar-brand-image">
+            </a>
+        </div>
+        <form class="card card-md" th:action="@{/register}" method="post" th:object="${dto}">
+            <div class="card-body">
+                <h2 class="card-title text-center mb-4">Create new account</h2>
+                <div class="alert alert-danger mb-3" role="alert" th:errors="${dto}">
+                </div>
+                <div class="alert alert-danger alert-dismissible" role="alert" th:if="${#fields.hasErrors('username')}">
+                    <div class=" d-flex">
+                        <div>
+                            <!-- Download SVG icon from http://tabler-icons.io/i/alert-circle -->
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon alert-icon" width="24" height="24"
+                                viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                <path d="M3 12a9 9 0 1 0 18 0a9 9 0 0 0 -18 0"></path>
+                                <path d="M12 8v4"></path>
+                                <path d="M12 16h.01"></path>
+                            </svg>
+                        </div>
+                        <div th:errors="*{username}">
+                        </div>
+                    </div>
+                    <a class="btn-close" data-bs-dismiss="alert" aria-label="close"></a>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Username</label>
+                    <input type="text" class="form-control" placeholder="Enter username" th:field="*{username}">
+                </div>
+                <div class="alert alert-danger alert-dismissible" role="alert" th:if="${#fields.hasErrors('password')}">
+                    <div class="d-flex">
+                        <div>
+                            <!-- Download SVG icon from http://tabler-icons.io/i/alert-circle -->
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon alert-icon" width="24" height="24"
+                                viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                <path d="M3 12a9 9 0 1 0 18 0a9 9 0 0 0 -18 0"></path>
+                                <path d="M12 8v4"></path>
+                                <path d="M12 16h.01"></path>
+                            </svg>
+                        </div>
+                        <div th:errors="*{password}">
+                        </div>
+                    </div>
+                    <a class="btn-close" data-bs-dismiss="alert" aria-label="close"></a>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Password</label>
+                    <input type="password" class="form-control" placeholder="Enter Password" th:field="*{password}">
+                </div>
+                <div class="alert alert-danger alert-dismissible" role="alert"
+                    th:if="${#fields.hasErrors('confirmPassword')}">
+                    <div class="d-flex">
+                        <div>
+                            <!-- Download SVG icon from http://tabler-icons.io/i/alert-circle -->
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon alert-icon" width="24" height="24"
+                                viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                <path d="M3 12a9 9 0 1 0 18 0a9 9 0 0 0 -18 0"></path>
+                                <path d="M12 8v4"></path>
+                                <path d="M12 16h.01"></path>
+                            </svg>
+                        </div>
+                        <div th:errors="*{confirmPassword}">
+                        </div>
+                    </div>
+                    <a class="btn-close" data-bs-dismiss="alert" aria-label="close"></a>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Confirm Password</label>
+                    <div class="input-group input-group-flat">
+                        <input type="password" class="form-control" placeholder="Confirm Password"
+                            th:field="*{confirmPassword}">
+                    </div>
+                </div>
+                <div class="form-footer">
+                    <button type="submit" class="btn btn-primary w-100">Create new account</button>
+                </div>
+            </div>
+        </form>
+        <div class="text-center text-secondary mt-3">
+            Already have account? <a th:href="@{/login}" tabindex="-1">Sign in</a>
+        </div>
+    </div>
+</main>

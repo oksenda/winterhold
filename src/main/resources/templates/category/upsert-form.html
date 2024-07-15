@@ -1,0 +1,39 @@
+<main id="upsertAuthorForm" xmlns:th="http://www.w3.org/1999/xhtml">
+    <form th:action="@{/categories/upsert}" method="post" th:object="${dto}" id="upsertForm">
+        <div class="alert alert-danger mb-3" role="alert" th:errors="*{name}"></div>
+        <div class="mb-3">
+            <label for="title" class="form-label">Category Name *</label>
+            <input type="text" class="form-control" id="title" placeholder="Title" th:value="*{name}"  th:readonly="${update}"
+                th:field="*{name}">
+        </div>
+        <div class="alert alert-danger mb-3" role="alert" th:errors="*{floor}"></div>
+        <div class="mb-3">
+            <label for="firstName" class="form-label">Floor *</label>
+            <input type="number" class="form-control" id="firstName" placeholder="First Name" th:value="*{floor}"
+                th:field="*{floor}">
+        </div>
+        <div class="alert alert-danger mb-3" role="alert" th:errors="*{isle}"></div>
+        <div class="mb-3">
+            <label for="lastName" class="form-label">Isle </label>
+            <input type="text" class="form-control" id="lastName" placeholder="Last Name" th:value="*{isle}"
+                th:field="*{isle}">
+        </div>
+        <div class="alert alert-danger mb-3" role="alert" th:errors="*{bay}"></div>
+        <div class="mb-3">
+            <label for="birthDate" class="form-label">Bay</label>
+            <input type="text" class="form-control" id="birthDate" placeholder="Birth Date" th:value="*{bay}"
+                th:field="*{bay}">
+        </div>
+        <button type="submit" class="btn btn-facebook w-100">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                class="icon icon-tabler icons-tabler-outline icon-tabler-device-floppy">
+                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                <path d="M6 4h10l4 4v10a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2" />
+                <path d="M12 14m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
+                <path d="M14 4l0 4l-6 0l0 -4" />
+            </svg>
+            Save
+        </button>
+    </form>
+</main>

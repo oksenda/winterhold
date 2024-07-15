@@ -1,0 +1,48 @@
+<main xmlns:th="http://www.w3.org/1999/xhtml">
+    <form th:action="@{/loans/upsert}" method="post"  th:object="${dto}" id="upsertForm">
+        <input type="hidden" th:value="*{id}" th:field="*{id}">
+        <div class="alert alert-danger mb-3" role="alert" th:errors="*{loanDate}"></div>
+        <div class="mb-3">
+            <label for="loanDate" class="form-label">Loan Date *</label>
+            <input type="date" class="form-control" id="loanDate" placeholder="Loan Date" th:value="*{loanDate}"
+                th:field="*{loanDate}">
+        </div>
+        <div class="mb-3">
+            <label for="note" class="form-label">Note</label>
+            <textarea class="form-control" id="note" rows="3" th:text="*{note}" th:field="*{note}"></textarea>
+        </div>
+        <div class="alert alert-danger mb-3" role="alert" th:errors="*{customerNumber}"></div>
+        <div class="mb-3">
+            <label for="customerNumber" class="form-label">Customer Number *</label>
+            <select class="form-select" id="customerNumber" th:field="*{customerNumber}">
+                <option value="">Select a customer</option>
+                <option th:each="customer : ${customers}" th:value="${customer.membershipNumber}" 
+                        th:text="${customer.membershipNumber}"></option>
+            </select>
+        </div>
+        
+        <div class="alert alert-danger mb-3" role="alert" th:errors="*{bookCode}"></div>
+        <div class="mb-3">
+            <label for="bookCode" class="form-label">Book Code *</label>
+            <select class="form-select" id="bookCode" th:field="*{bookCode}">
+                <option value="">Select a book</option>
+                <option th:if="${dto.bookCode!= null}" th:value="${dto.bookCode}" th:text="${dto.bookCode}" selected  ></option>
+                <option th:each="book : ${books}" th:value="${book.code}" th:text="${book.title}" 
+                        th:selected="${book.code == dto.bookCode}"></option>
+            </select>
+        </div>
+        
+        
+        <button type="submit" class="btn btn-facebook w-100">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                class="icon icon-tabler icons-tabler-outline icon-tabler-device-floppy">
+                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                <path d="M6 4h10l4 4v10a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2"></path>
+                <path d="M12 14m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0"></path>
+                <path d="M14 4l0 4l-6 0l0 -4"></path>
+            </svg>
+            Save
+        </button>
+    </form>
+</main>

@@ -1,0 +1,32 @@
+<main xmlns:th="http://www.w3.org/1999/xhtml">
+    <div th:object="${customer}">
+        <div class="mb-3">
+            <label for="membershipNumber" class="form-label">Membership Number</label>
+            <p  class="form-control"  th:text="*{membershipNumber}" th:field="*{membershipNumber}"></p>
+        </div>
+        <div class="mb-3">
+            <label for="firstName" class="form-label">Full Name</label>
+            <p  class="form-control" th:text="*{fullName}"
+                th:field="*{fullName}"></p>
+        </div>
+        <div class="mb-3">
+            <label for="birthDate" class="form-label">Birth Date</label>
+            <p  class="form-control" id="birthDate"  th:text="*{birthDate}"
+                th:field="*{birthDate}"></p>
+        </div>
+        <div class="mb-3">
+            <label for="gender" class="form-label">Gender</label>
+            <p  class="form-control" id="gender"  th:text="*{gender}"
+                th:field="*{gender}"></p>
+        </div>
+        <div class="mb-3">
+            <label for="phone" class="form-label">Phone</label>
+            <p  class="form-control" id="phone" th:text="*{phone}"
+                th:field="*{phone}"></p>
+        </div>
+        <div class="mb-3">
+            <label for="address" class="form-label">Address</label>
+            <p class="form-control" id="address" th:text="*{address}" th:field="*{address}"></p>
+        </div>
+    </div>
+</main>

@@ -1,0 +1,70 @@
+<main xmlns:th="http://www.w3.org/1999/xhtml">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg">
+                <div class="card">
+                    <div class="card-status-top bg-green"></div>
+                    <div class="card-header">
+                        <h5 class="card-title">Book</h5>
+                    </div>
+                    <div class="card-body p-1" th:object="${book}">
+                        <div class="mb-3">
+                            <label>Title:</label>
+                            <p class="form-control" th:text="*{title}">Title</p>
+                        </div>
+                        <div class="mb-3">
+                            <label>Author Name:</label>
+                            <p class="form-control" th:text="*{authorName}">Author Name</p>
+                        </div>
+                        <div class="mb-3">
+                            <label>Total Page:</label>
+                            <p class="form-control" th:text="*{totalPage}">Total Page</p>
+                        </div>
+                        <div class="mb-3">
+                            <label>Category Name:</label>
+                            <p class="form-control" th:text="*{categoryName}">Category Name</p>
+                        </div>
+                        <div class="mb-3">
+                            <label>Floor:</label>
+                            <p class="form-control" th:text="*{floor}">Floor</p>
+                        </div>
+                        <div class="mb-3">
+                            <label>Bay:</label>
+                            <p class="form-control" th:text="*{bay}">Bay</p>
+                        </div>
+                        <div class="mb-3">
+                            <label>Isle:</label>
+                            <p class="form-control" th:text="*{isle}">Isle</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg">
+                <div class="card">
+                    <div class="card-status-top bg-green"></div>
+                    <div class="card-header">
+                        <h5 class="card-title">Customer</h5>
+                    </div>
+                    <div class="card-body p-1" th:object="${customer}">
+                        <div class="mb-3">
+                            <label>Membership Number:</label>
+                            <p class="form-control" th:text="*{membershipNumber}">Membership Number</p>
+                        </div>
+                        <div class="mb-3">
+                            <label>Full Name:</label>
+                            <p class="form-control" th:text="*{fullName}">Full Name</p>
+                        </div>
+                        <div class="mb-3">
+                            <label>Membership Expire Date:</label>
+                            <p class="form-control" th:text="*{membershipExpireDate}">Membership Expire Date</p>
+                        </div>
+                        <div class="mb-3">
+                            <label>Phone:</label>
+                            <p class="form-control" th:text="*{phone}">Phone</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>

@@ -1,0 +1,123 @@
+<main xmlns:th="http://www.thymeleaf.org" th:fragment="content">
+    <div class="card">
+        <div class="card-header">
+            <h3 class="card-title" th:text="${title}">Books</h3>
+        </div>
+        <div class="card-body border-bottom py-3">
+            <div class="row">
+                <div class="col col-lg-6">
+                    <form class="d-flex" th:action="@{/customers}" method="get" id="formSearch" th:object="${dto}">
+                        <input class="form-control me-2" type="search" placeholder="Membership Number" aria-label="Search" name="membershipNumber"
+                               th:value="*{membershipNumber}">
+                        <input class="form-control me-2" type="search" placeholder="Name" aria-label="Search" name="name"
+                               id="nameSearch" th:value="*{name}">
+                        <button class="btn btn-outline-success" type="submit">Search</button>
+                    </form>
+                </div>
+                <div class="col col-lg-6">
+                    <button type="button" class="btn btn-primary upsertBtn">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24"
+                             stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                            <path d="M12 5l0 14"></path>
+                            <path d="M5 12l14 0"></path>
+                        </svg>
+                        New Customer
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="table-responsive">
+            <table class="table card-table table-vcenter text-nowrap datatable">
+                <thead>
+                <tr>
+                    <th>Action</th>
+                    <th>Membership Number</th>
+                    <th>Full Name</th>
+                    <th>Expire Date</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="customer : ${customers}">
+                    <td>
+                        <div class="btn-group" role="group" aria-label="Basic mixed styles example">
+                            <button type="button" class="btn btn-outline-success extendBtn" >Extend</button>
+                            <form th:action="@{/customers/extend}" method="post" class="extendForm" hidden>
+                                <input type="hidden" th:value="${customer.membershipNumber}" name="membershipNumber">
+                            </form>
+                            <button type="button" class="btn btn-outline-warning upsertBtn" th:data-id="${customer.membershipNumber}">Edit</button>
+                            <form th:action="@{/customers/delete}" method="post" class="deleteForm" hidden>
+                                <input type="hidden" th:value="${customer.membershipNumber}" name="membershipNumber">
+                            </form>
+                            <button type="button" class="btn btn-outline-danger deleteBtn">Delete</button>
+                        </div>
+                    </td>
+                    <td>
+                        <a href="#" class="text-reset detailBtn" th:text="${customer.membershipNumber}" th:data-id="${customer.membershipNumber}"></a>
+                    </td>
+                    <td th:text="${customer.fullName}"></td>
+                    <td th:text="${customer.membershipExpireDate}">
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="card-footer d-flex align-items-center">
+            <th:block th:if="${customers.totalPages>0}">
+                <p class="m-0 text-secondary">Page<span th:text="${dto.pageNumber != null? dto.pageNumber:1}">
+
+          </span> of <span th:text="${customers.totalPages}"></span>
+                </p>
+            </th:block>
+            <ul class="pagination m-0 ms-auto">
+                <th:block th:if="${customers.totalPages > 0}" th:each="page : ${#numbers.sequence(1,customers.totalPages)}">
+                    <li class="page-item"><a class="page-link" th:classappend="${page == dto.pageNumber ? 'active' : ''}"
+                                             th:value="${page}" th:href="@{/customers?(membershipNumber=${dto.membershipNumber},
+                                             pageNumber=${page},
+                                             name=${dto.name})}" th:text="${page}"></a></li>
+                </th:block>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="upsertModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+         aria-labelledby="upsertModalLabel" aria-hidden="true">
+        <div class=" modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="upsertModalLabel">Modal title</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body" id="loadFormUpsert">
+                    ...
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+        <!-- Modal -->
+        <div class="modal fade" id="detailModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        aria-labelledby="detailModalLabel" aria-hidden="true">
+       <div class=" modal-dialog modal-dialog-centered">
+           <div class="modal-content">
+               <div class="modal-header">
+                   <h5 class="modal-title" id="detailModalLabel">Modal title</h5>
+                   <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+               </div>
+               <div class="modal-body" id="loadFormDetail">
+                   ...
+               </div>
+               <div class="modal-footer">
+                   <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+               </div>
+           </div>
+       </div>
+   </div>
+
+
+    <script th:src="@{/resources/js/customer.js}" defer></script>
+</main>

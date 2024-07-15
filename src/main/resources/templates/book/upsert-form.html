@@ -1,0 +1,62 @@
+<main>
+    <form th:action="@{/books/upsert}" method="post" th:object="${dto}" id="upsertForm">
+
+        <div class="alert alert-danger mb-3" role="alert" th:errors="*{code}"></div>
+        <div class="mb-3">
+            <label for="code" class="form-label">Code *</label>
+            <input type="text" class="form-control" id="code" placeholder="Code" th:value="*{code}" th:field="*{code}"  th:readonly="${update}">
+        </div>
+
+        <div class="alert alert-danger mb-3" role="alert" th:errors="*{title}"></div>
+        <div class="mb-3">
+            <label for="title" class="form-label">Title *</label>
+            <input type="text" class="form-control" id="title" placeholder="Title" th:value="*{title}"
+                th:field="*{title}">
+        </div>
+        <div class="alert alert-danger mb-3" role="alert" th:errors="*{releaseDate}"></div>
+        <div class="mb-3">
+            <label for="releaseDate" class="form-label">Release Date</label>
+            <input type="date" class="form-control" id="releaseDate" th:value="*{releaseDate}"
+                th:field="*{releaseDate}">
+        </div>
+
+        <div class="alert alert-danger mb-3" role="alert" th:errors="*{totalPage}"></div>
+        <div class="mb-3">
+            <label for="totalPage" class="form-label">Total Page</label>
+            <input type="number" class="form-control" id="totalPage" th:value="*{totalPage}" th:field="*{totalPage}">
+        </div>
+
+        <div class="alert alert-danger mb-3" role="alert" th:errors="*{categoryName}"></div>
+        <div class="mb-3">
+            <label for="categoryName" class="form-label">Category Name *</label>
+            <input type="text" class="form-control" id="categoryName" placeholder="Category Name"
+                th:value="*{categoryName}" th:field="*{categoryName}" readonly>
+        </div>
+
+        <div class="alert alert-danger mb-3" role="alert" th:errors="*{authorId}"></div>
+        <div class="mb-3">
+            <label for="authorId" class="form-label">Author *</label>
+            <select class="form-select" id="authorId" th:field="*{authorId}">
+                <option value="">Pilih Author</option>
+                <option th:each="author : ${authors}" th:value="${author.id}" th:text="${author.fullName}"></option>
+            </select>
+        </div>
+
+        <div class="mb-3">
+            <label for="summary" class="form-label">Summary</label>
+            <textarea class="form-control" id="summary" rows="3" th:text="*{summary}" th:field="*{summary}"></textarea>
+        </div>
+
+        <button type="submit" class="btn btn-facebook w-100">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                class="icon icon-tabler icons-tabler-outline icon-tabler-device-floppy">
+                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                <path d="M6 4h10l4 4v10a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2" />
+                <path d="M12 14m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
+                <path d="M14 4l0 4l-6 0l0 -4" />
+            </svg>
+            Save
+        </button>
+    </form>
+</main>

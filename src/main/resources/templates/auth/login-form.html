@@ -1,0 +1,70 @@
+<main xmlns:th="http://www.thymeleaf.org" th:fragment="content" class="h-100">
+    <div class="page page-center">
+        <div class="container container-tight py-4">
+            <div class="card card-md">
+                <div class="card-body">
+                    <h2>Login to your account</h2>
+                    <div class="alert alert-danger mb-3" th:if="${error}">Wrong Username or Password</div>
+                    <div class="alert alert-danger mb-3" th:if="${expired}">Seesion Expired</div>
+                    <div class="alert alert-danger mb-3" th:if="${timeout}">Seesion Expired</div>
+                    <form th:action="@{/authenticating}" method="post" th:object="${dto}">
+                        <div class="alert alert-danger alert-dismissible" role="alert" th:if="${#fields.hasErrors('username')}">
+                            <div class=" d-flex">
+                                <div>
+                                    <!-- Download SVG icon from http://tabler-icons.io/i/alert-circle -->
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="icon alert-icon" width="24" height="24"
+                                        viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
+                                        stroke-linecap="round" stroke-linejoin="round">
+                                        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                        <path d="M3 12a9 9 0 1 0 18 0a9 9 0 0 0 -18 0"></path>
+                                        <path d="M12 8v4"></path>
+                                        <path d="M12 16h.01"></path>
+                                    </svg>
+                                </div>
+                                <div th:errors="*{username}">
+                                </div>
+                            </div>
+                            <a class="btn-close" data-bs-dismiss="alert" aria-label="close"></a>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Username</label>
+                            <input type="text" class="form-control" placeholder="your username" th:field="*{username}">
+                        </div>
+                        <div class="alert alert-danger alert-dismissible" role="alert" th:if="${#fields.hasErrors('password')}">
+                            <div class=" d-flex">
+                                <div>
+                                    <!-- Download SVG icon from http://tabler-icons.io/i/alert-circle -->
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="icon alert-icon" width="24" height="24"
+                                        viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
+                                        stroke-linecap="round" stroke-linejoin="round">
+                                        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                        <path d="M3 12a9 9 0 1 0 18 0a9 9 0 0 0 -18 0"></path>
+                                        <path d="M12 8v4"></path>
+                                        <path d="M12 16h.01"></path>
+                                    </svg>
+                                </div>
+                                <div th:errors="*{password}">
+                                </div>
+                            </div>
+                            <a class="btn-close" data-bs-dismiss="alert" aria-label="close"></a>
+                        </div>
+                        <div class="mb-2">
+                            <label class="form-label">
+                                Password
+                            </label>
+                            <div class="input-group input-group-flat">
+                                <input type="password" class="form-control" placeholder="Your password" th:field="*{password}">
+                            </div>
+                        </div>
+                        <div class="form-footer">
+                            <button type="submit" class="btn btn-primary w-100">Sign in</button>
+                        </div>
+                    </form>
+                    <div class="text-center text-secondary mt-3">
+                        <a th:href="@{/register}" tabindex="-1">Sign Up</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>

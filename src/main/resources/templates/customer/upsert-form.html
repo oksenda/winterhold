@@ -1,0 +1,54 @@
+<main xmlns:th="http://www.w3.org/1999/xhtml">
+    <form th:action="@{/categories/upsert}" method="post" th:object="${dto}" id="upsertForm">
+        <div class="alert alert-danger mb-3" role="alert" th:errors="*{membershipNumber}"></div>
+        <div class="mb-3">
+            <label for="membershipNumber" class="form-label">Membership Number *</label>
+            <input type="text" class="form-control" id="membershipNumber" placeholder="Membership Number"
+                th:value="*{membershipNumber}" th:field="*{membershipNumber}" th:readonly="${update}">
+        </div>
+        <div class="alert alert-danger mb-3" role="alert" th:errors="*{firstName}"></div>
+        <div class="mb-3">
+            <label for="firstName" class="form-label">First Name *</label>
+            <input type="text" class="form-control" id="firstName" placeholder="First Name" th:value="*{firstName}"
+                th:field="*{firstName}">
+        </div>
+        <div class="mb-3">
+            <label for="lastName" class="form-label">Last Name</label>
+            <input type="text" class="form-control" id="lastName" placeholder="Last Name" th:value="*{lastName}"
+                th:field="*{lastName}">
+        </div>
+        <div class="alert alert-danger mb-3" role="alert" th:errors="*{birthDate}"></div>
+        <div class="mb-3">
+            <label for="birthDate" class="form-label">Birth Date *</label>
+            <input type="date" class="form-control" id="birthDate" placeholder="Birth Date" th:value="*{birthDate}"
+                th:field="*{birthDate}">
+        </div>
+        <div class="mb-3">
+            <label for="gender" class="form-label">Gender *</label>
+            <select class="form-select" id="gender" th:field="*{gender}">
+                <option value="MALE" th:selected="${dto.gender == 'MALE'}">Male</option>
+                <option value="FEMALE" th:selected="${dto.gender == 'FEMALE'}">Female</option>
+            </select>
+        </div>
+        <div class="mb-3">
+            <label for="phone" class="form-label">Phone</label>
+            <input type="text" class="form-control" id="phone" placeholder="Phone" th:value="*{phone}"
+                th:field="*{phone}">
+        </div>
+        <div class="mb-3">
+            <label for="address" class="form-label">Address</label>
+            <textarea class="form-control" id="address" rows="3" th:text="*{address}" th:field="*{address}"></textarea>
+        </div>
+        <button type="submit" class="btn btn-facebook w-100">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                class="icon icon-tabler icons-tabler-outline icon-tabler-device-floppy">
+                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                <path d="M6 4h10l4 4v10a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2"></path>
+                <path d="M12 14m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0"></path>
+                <path d="M14 4l0 4l-6 0l0 -4"></path>
+            </svg>
+            Save
+        </button>
+    </form>
+</main>
